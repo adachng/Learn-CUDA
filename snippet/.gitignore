@@ -1,0 +1,20 @@
+**/*
+!.gitignore
+
+# CMakeLists.txt:
+!**/CMakeLists.txt
+
+# CUDA source files:
+!**/*.cu
+!**/*.cuh
+
+# C source files:
+!**/*.c
+!**/*.h
+
+# C++ source files:
+!**/*.cpp
+!**/*.hpp
+
+# Python files:
+!**/*.py
