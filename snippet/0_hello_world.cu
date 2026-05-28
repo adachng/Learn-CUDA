@@ -10,7 +10,8 @@ __global__ void helloDevice(void)
     // See https://docs.nvidia.com/cuda/cuda-programming-guide
     const size_t threadId =
         size_t{threadIdx.x} + size_t{blockIdx.x} * size_t{blockDim.x};
-    printf("Hello, World! I am thread %zu\n", threadId);
+    printf("Hello, World! I am thread %llu\n",
+           static_cast<unsigned long long>(threadId));
 }
 
 __host__ int main()
