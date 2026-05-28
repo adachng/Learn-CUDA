@@ -5,6 +5,14 @@
 #include <driver_types.h>
 #include <iostream>
 
+__global__ void helloDevice(void)
+{
+    // See https://docs.nvidia.com/cuda/cuda-programming-guide
+    const size_t threadId =
+        size_t{threadIdx.x} + size_t{blockIdx.x} * size_t{blockDim.x};
+    printf("Hello, World! I am thread %zu\n", threadId);
+}
+
 __host__ int main()
 {
     // See the driver and runtime versions:
@@ -110,6 +118,14 @@ __host__ int main()
 
 #undef PROP_MEMBER_LIST
         }
+    }
+
+    helloDevice<<<1, 10>>>();
+    const cudaError_t err{cudaDeviceSynchronize()};
+    if (err != cudaSuccess)
+    {
+        std::cout << "cudaDeviceSynchronize() error: " << cudaGetErrorName(err)
+                  << std::endl;
     }
 
     return 0;
