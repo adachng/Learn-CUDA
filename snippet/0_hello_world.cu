@@ -121,6 +121,7 @@ __host__ int main()
         }
     }
 
+    // https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/intro-to-cuda-cpp.html#kernels
     helloDevice<<<1, 10>>>();
     const cudaError_t err{cudaDeviceSynchronize()};
     if (err != cudaSuccess)
